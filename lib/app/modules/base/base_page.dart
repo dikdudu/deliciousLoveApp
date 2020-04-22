@@ -1,20 +1,19 @@
-import 'package:deliciousloveapp/app/modules/clients/pages/clients_screen.dart';
+import 'package:deliciousloveapp/app/modules/clients/pages/clients_page.dart';
 import 'package:deliciousloveapp/app/modules/drawer/custom_drawer.dart';
-import 'package:deliciousloveapp/app/modules/home/home_screen.dart';
-import 'package:deliciousloveapp/app/modules/orders/pages/oders_screen.dart';
+import 'package:deliciousloveapp/app/modules/home/home_page.dart';
+import 'package:deliciousloveapp/app/modules/orders/pages/oders_page.dart';
 import 'package:deliciousloveapp/app/shared/controllers/navigation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
 
-class BaseScreen extends StatefulWidget {
+class BasePage extends StatefulWidget {
   @override
-  _BaseScreenState createState() => _BaseScreenState();
+  _BasePageState createState() => _BasePageState();
 }
 
-class _BaseScreenState extends State<BaseScreen> {
-
+class _BasePageState extends State<BasePage> {
   final PageController _pageController = PageController();
 
   final navigationController = Modular.get<NavigationController>();
@@ -50,12 +49,13 @@ class _BaseScreenState extends State<BaseScreen> {
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
-          HomeScreen(),
-          OrdersScreen(),
-          ClientsScreen(),
+          HomePage(),
+          OrdersPage(),
+          ClientsPage(),
         ],
       ),
       drawer: CustomDrawer(),
     );
   }
 }
+

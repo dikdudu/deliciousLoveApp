@@ -10,12 +10,12 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../clients_controller.dart';
 
-class ClientsScreen extends StatefulWidget {
+class ClientsPage extends StatefulWidget {
   @override
-  _ClientsScreenState createState() => _ClientsScreenState();
+  _ClientsPageState createState() => _ClientsPageState();
 }
 
-class _ClientsScreenState extends State<ClientsScreen> {
+class _ClientsPageState extends State<ClientsPage> {
   ClientsController _clientsStore;
 
   @override
@@ -114,3 +114,4 @@ class _ClientsScreenState extends State<ClientsScreen> {
     );
   }
 }
+

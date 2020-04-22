@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 
-class OrdersScreen extends StatelessWidget {
+class OrdersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {

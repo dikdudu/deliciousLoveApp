@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "657666219728",
+    "firebase_url": "https://deliciousloveapp.firebaseio.com",
+    "project_id": "deliciousloveapp",
+    "storage_bucket": "deliciousloveapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657666219728:android:937b57bd4f252507f248d5",
+        "android_client_info": {
+          "package_name": "br.com.santos.deliciousloveapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "657666219728-49pijoai79sn7a0anfs8k19np5s2erqq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8x7FrvToC-VyIo5ndM56Q00vPVATE7oQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "657666219728-49pijoai79sn7a0anfs8k19np5s2erqq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

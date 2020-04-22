@@ -3,7 +3,7 @@ import 'package:deliciousloveapp/app/shared/widgets/custom_text_field/custom_tex
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

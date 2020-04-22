@@ -1,10 +1,9 @@
 import 'package:deliciousloveapp/app/shared/widgets/custom_background/build_back.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
 
     return Stack(
         children: <Widget>[
@@ -41,3 +40,5 @@ class HomeScreen extends StatelessWidget {
 
   }
 }
+
+

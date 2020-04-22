@@ -9,14 +9,12 @@ import 'package:mobx/mobx.dart';
 import '../../modules/base/base_page.dart';
 import 'login_controller.dart';
 
-class LoginScreen extends StatefulWidget {
-
+class LoginPage extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-
+class _LoginPageState extends State<LoginPage> {
   LoginController loginStore = LoginController();
 
   ReactionDisposer disposer;
@@ -26,11 +24,11 @@ class _LoginScreenState extends State<LoginScreen> {
     super.didChangeDependencies();
 
     disposer = reaction(
-        (_) => loginStore.loggedIn,
-        (loggedIn){
+            (_) => loginStore.loggedIn,
+            (loggedIn){
           if(loggedIn)
             Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_)=>BaseScreen())
+                MaterialPageRoute(builder: (_)=>BasePage())
             );
         }
     );
@@ -107,38 +105,38 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       SizedBox(height: 16),
                       Observer(
-                        builder: (_) {
-                          return FadeAnimation(3.5,Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(32),
-                              gradient: LinearGradient(
-                                  colors: [
-                                    Color.fromRGBO(255, 105, 180, .6),
-                                    Color.fromRGBO(255, 105, 180, .2),
-                                  ]
+                          builder: (_) {
+                            return FadeAnimation(3.5,Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(32),
+                                gradient: LinearGradient(
+                                    colors: [
+                                      Color.fromRGBO(255, 105, 180, .6),
+                                      Color.fromRGBO(255, 105, 180, .2),
+                                    ]
+                                ),
                               ),
-                            ),
-                            child: FlatButton(
-                              padding: EdgeInsets.only(left: 50,right: 50),
-                              child: loginStore.loading ? CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.white),) :
-                              Text("Entrar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
-                              onPressed: loginStore.loginPressed,
-                            ),
-                          ));
-                        }
+                              child: FlatButton(
+                                padding: EdgeInsets.only(left: 50,right: 50),
+                                child: loginStore.loading ? CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.white),) :
+                                Text("Entrar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                                onPressed: loginStore.loginPressed,
+                              ),
+                            ));
+                          }
                       ),
                       SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           FlatButton(
-                              child: Text(
-                                "Criar novo usuário",
-                                style: TextStyle(color: Color.fromRGBO(255, 105, 180, .6)),
-                              ),
+                            child: Text(
+                              "Criar novo usuário",
+                              style: TextStyle(color: Color.fromRGBO(255, 105, 180, .6)),
+                            ),
                             onPressed: (){
-                                Navigator.pushNamed(context, '/signup');
+                              Navigator.pushNamed(context, '/signup');
                             },
                           ),
                           Text("/", textAlign: TextAlign.center,),
@@ -169,6 +167,4 @@ class _LoginScreenState extends State<LoginScreen> {
     disposer();
     super.dispose();
   }
-
-
 }

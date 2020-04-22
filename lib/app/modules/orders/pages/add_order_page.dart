@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class AddOrderScreen extends StatefulWidget {
+class AddOrderPage extends StatefulWidget {
   @override
-  _AddOrderScreenState createState() => _AddOrderScreenState();
+  _AddOrderPageState createState() => _AddOrderPageState();
 }
 
-class _AddOrderScreenState extends State<AddOrderScreen> {
+class _AddOrderPageState extends State<AddOrderPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,3 +72,4 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
     );
   }
 }
+
