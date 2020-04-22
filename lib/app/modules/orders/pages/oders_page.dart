@@ -3,7 +3,7 @@ import 'package:deliciousloveapp/app/modules/orders/widgets/add_order_button.dar
 import 'package:deliciousloveapp/app/modules/orders/widgets/category_selector.dart';
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
+import '../constants.dart';
 
 
 class OrdersScreen extends StatelessWidget {

@@ -1,7 +1,7 @@
-import 'package:deliciousloveapp/app/modules/clients/clients_screen.dart';
+import 'package:deliciousloveapp/app/modules/clients/pages/clients_screen.dart';
 import 'package:deliciousloveapp/app/modules/drawer/custom_drawer.dart';
 import 'package:deliciousloveapp/app/modules/home/home_screen.dart';
-import 'package:deliciousloveapp/app/modules/orders/oders_screen.dart';
+import 'package:deliciousloveapp/app/modules/orders/pages/oders_screen.dart';
 import 'package:deliciousloveapp/app/shared/controllers/navigation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'clients_controller.dart';
+import '../clients_controller.dart';
 
 class ClientsScreen extends StatefulWidget {
   @override

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../modules/base/base_screen.dart';
+import '../../modules/base/base_page.dart';
 import 'login_controller.dart';
 
 class LoginScreen extends StatefulWidget {
