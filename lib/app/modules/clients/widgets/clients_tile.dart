@@ -33,38 +33,45 @@ class _ClientTileState extends ModularState<ClientTile, ClientsController> {
 
           List<ClientsModel> list = controller.clientsList.data;
           return GestureDetector(
-            onTap: (){},
+            onLongPress: () {},
             child: Container(
-              margin: EdgeInsets.only(top: 20),
               child: ListView.builder(
                   itemCount: list.length,
                   itemBuilder: (_, index) {
                     ClientsModel model = list[index];
-                    return Card(
+                    return Container(
+                      margin: EdgeInsets.only(top: 5),
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(100,254, 201, 241),
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(10)
+                        ),
+                      ),
                       child: ListTile(
-                            title: Text(
-                              model.name,
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            subtitle: Text(
-                              "fone: ${model.phone}",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            trailing: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(
-                                  "Pedidos: 0",
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                Text(
-                                  "Gastos: 0",
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                              ],
-                            ),
+                          title: Text(
+                            model.name,
+                            style: TextStyle(color: Colors.black),
                           ),
+                          subtitle: Text(
+                            "fone: ${model.phone}",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          trailing: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                "Pedidos: 0",
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              Text(
+                                "Gastos: 0",
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ],
+                          ),
+                        ),
+
                     );
                   }),
             ),
