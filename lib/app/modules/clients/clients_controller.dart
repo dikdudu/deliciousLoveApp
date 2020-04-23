@@ -26,39 +26,5 @@ abstract class _ClientsController with Store {
 
 
 
-
-
-
-
-
-
-
-  //Controladores do search talvez nem use
-  @observable
-  String _searchController = "";
-
-
-
-  @action
-  void setSearch(String search){
-    _searchController = search;
-  }
-
-  @computed
-  String get outSearch => _searchController;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
