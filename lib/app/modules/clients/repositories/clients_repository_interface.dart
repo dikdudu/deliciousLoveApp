@@ -1,4 +1,4 @@
-import 'package:deliciousloveapp/app/modules/clients/clients_model.dart';
+import 'package:deliciousloveapp/app/modules/clients/models/clients_model.dart';
 
 abstract class IClientsRepository{
 

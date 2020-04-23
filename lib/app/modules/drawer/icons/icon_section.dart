@@ -9,7 +9,7 @@ class IconSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final _navigationController = Modular.get<NavigationController>();
+    final NavigationController _navigationController = Modular.get();
 
     void _setPage(int page){
       Navigator.of(context).pop();

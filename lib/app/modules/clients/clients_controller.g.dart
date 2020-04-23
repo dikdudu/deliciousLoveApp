@@ -15,6 +15,23 @@ mixin _$ClientsController on _ClientsController, Store {
   String get outSearch =>
       (_$outSearchComputed ??= Computed<String>(() => super.outSearch)).value;
 
+  final _$clientsListAtom = Atom(name: '_ClientsController.clientsList');
+
+  @override
+  ObservableStream<List<ClientsModel>> get clientsList {
+    _$clientsListAtom.context.enforceReadPolicy(_$clientsListAtom);
+    _$clientsListAtom.reportObserved();
+    return super.clientsList;
+  }
+
+  @override
+  set clientsList(ObservableStream<List<ClientsModel>> value) {
+    _$clientsListAtom.context.conditionallyRunInAction(() {
+      super.clientsList = value;
+      _$clientsListAtom.reportChanged();
+    }, _$clientsListAtom, name: '${_$clientsListAtom.name}_set');
+  }
+
   final _$_searchControllerAtom =
       Atom(name: '_ClientsController._searchController');
 
@@ -37,6 +54,16 @@ mixin _$ClientsController on _ClientsController, Store {
       ActionController(name: '_ClientsController');
 
   @override
+  dynamic getList() {
+    final _$actionInfo = _$_ClientsControllerActionController.startAction();
+    try {
+      return super.getList();
+    } finally {
+      _$_ClientsControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setSearch(String search) {
     final _$actionInfo = _$_ClientsControllerActionController.startAction();
     try {
@@ -48,7 +75,8 @@ mixin _$ClientsController on _ClientsController, Store {
 
   @override
   String toString() {
-    final string = 'outSearch: ${outSearch.toString()}';
+    final string =
+        'clientsList: ${clientsList.toString()},outSearch: ${outSearch.toString()}';
     return '{$string}';
   }
 }

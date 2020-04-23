@@ -14,9 +14,10 @@ class BasePage extends StatefulWidget {
 }
 
 class _BasePageState extends State<BasePage> {
+
   final PageController _pageController = PageController();
 
-  final navigationController = Modular.get<NavigationController>();
+  final NavigationController navigationController = Modular.get();
 
   NavigationController _navigationController;
 

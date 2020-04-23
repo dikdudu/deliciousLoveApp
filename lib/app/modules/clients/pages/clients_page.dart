@@ -1,7 +1,7 @@
 import 'package:deliciousloveapp/app/modules/clients/widgets/add_client_button.dart';
 import 'package:deliciousloveapp/app/modules/clients/widgets/search_area.dart';
 import 'package:deliciousloveapp/app/modules/clients/widgets/search_dialog.dart';
-import 'package:deliciousloveapp/app/modules/clients/widgets/user_tile.dart';
+import 'package:deliciousloveapp/app/modules/clients/widgets/clients_tile.dart';
 import 'package:deliciousloveapp/app/modules/drawer/custom_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -98,15 +98,7 @@ class _ClientsPageState extends State<ClientsPage> {
                     topLeft: Radius.circular(30.0),
                     topRight: Radius.circular(30.0)),
               ),
-              child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return ClientTile();
-                  },
-                  separatorBuilder: (context, index){
-                    return Container();
-                  },
-                  itemCount: 10
-              ),
+              child: ClientTile(),
             ),
           ),
         ],
