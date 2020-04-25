@@ -4,7 +4,8 @@ class ClientsModel {
   String name;
   String phone;
   String address;
-  final DocumentReference reference;
+
+  DocumentReference reference;
 
   ClientsModel({this.name, this.phone, this.address,this.reference});
 
@@ -14,7 +15,6 @@ class ClientsModel {
     return ClientsModel(name: doc['nome'], phone: doc['phone'], address: doc['address'], reference: doc.reference);
 
   }
-
 
 
 }

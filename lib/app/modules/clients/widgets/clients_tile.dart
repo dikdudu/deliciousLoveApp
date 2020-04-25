@@ -33,7 +33,9 @@ class _ClientTileState extends ModularState<ClientTile, ClientsController> {
 
           List<ClientsModel> list = controller.clientsList.data;
           return GestureDetector(
-            onLongPress: () {},
+            onLongPress: () {
+              _showDialog();
+            },
             child: Container(
               child: ListView.builder(
                   itemCount: list.length,
@@ -80,4 +82,35 @@ class _ClientTileState extends ModularState<ClientTile, ClientsController> {
       ),
     );
   }
+
+  _showDialog(){
+    showDialog(
+      context: context,
+      builder: (_){
+        return AlertDialog(
+          title: Center(child: Text('Opções'),),
+          content: Container(
+            height: 150,
+            child: Column(
+              children: <Widget>[
+                FlatButton(
+                  child: Text("Ligar"),
+                  onPressed: (){},
+                ),
+                FlatButton(
+                  child: Text("Editar"),
+                  onPressed: (){},
+                ),
+                FlatButton(
+                  child: Text("Ver Historico de Pedidos"),
+                  onPressed: (){},
+                ),
+              ],
+            ),
+          ),
+        );
+      }
+    );
+  }
+
 }

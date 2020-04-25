@@ -30,7 +30,12 @@ class _BasePageState extends State<BasePage> {
       _navigationController = navigationController;
 
       reaction((_) => _navigationController.outPage,(outPage){
-        if (outPage >= 0) _pageController.jumpToPage(outPage);
+        try {
+          if (outPage >= 0) _pageController.jumpToPage(outPage);
+        } catch (e) {
+
+        }
+
       });
     }
   }

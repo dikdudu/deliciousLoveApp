@@ -11,31 +11,35 @@ class CustomTextField extends StatelessWidget {
   final TextInputType textInputType;
   final Function(String) onChanged;
   final bool enabled;
+  final FormFieldSetter<String> onSaved;
+  final int maxLines;
 
   CustomTextField({this.hint, this.prefix, this.suffix, this.obscure = false,
-    this.textInputType, this.onChanged, this.enabled, this.controller
+    this.textInputType, this.onChanged, this.enabled, this.controller, this.onSaved, this.maxLines
   });
 
   @override
   Widget build(BuildContext context) {
-    return FadeAnimation(3, Container(
+    return FadeAnimation(0, Container(
+      margin: EdgeInsets.only(top: 8),
       decoration: BoxDecoration(
           shape: BoxShape.rectangle,
           color: Colors.white,
-          borderRadius: BorderRadius.circular(32),
+          borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
             color: Color.fromRGBO(255, 105, 180, .2),
-              blurRadius: 20.0,
-              offset: Offset(0, 10)
+              blurRadius: 10.0,
+              offset: Offset(0, 2)
           )
         ]
       ),
       padding: prefix != null ? EdgeInsets.all(4) : const EdgeInsets.only(left: 16),
-      child: TextField(
+      child: TextFormField(
       controller: controller,
       obscureText: obscure,
       keyboardType: textInputType,
+      maxLines: maxLines,
       onChanged: onChanged,
       enabled: enabled,
       decoration: InputDecoration(
@@ -46,6 +50,7 @@ class CustomTextField extends StatelessWidget {
         suffixIcon: suffix,
       ),
       textAlignVertical: TextAlignVertical.center,
+        onSaved: onSaved,
     )
     ));
 
