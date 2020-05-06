@@ -42,30 +42,32 @@ class _AddClientPageState extends ModularState<AddClientPage, ClientsController>
                     topLeft: Radius.circular(45.0),
                     topRight: Radius.circular(45.0)),
               ),
-              child: Container(
-                padding: EdgeInsets.all(20),
-                child: Column(
-                  children: <Widget>[
-                    CustomTextField(
-                      hint: 'Nome Completo',
-                      prefix: Icon(Icons.person),
-                      textInputType: TextInputType.multiline,
-                      enabled: true,
-                    ),
-                    CustomTextField(
-                      hint: 'Endereço',
-                      prefix: Icon(Icons.home),
-                      textInputType: TextInputType.text,
-                      maxLines: 2,
-                      enabled: true,
-                    ),
-                    CustomTextField(
-                      hint: 'Telefone',
-                      prefix: Icon(Icons.phone_android),
-                      textInputType: TextInputType.phone,
-                      enabled: true,
-                    ),
-                  ],
+              child: SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    children: <Widget>[
+                      CustomTextField(
+                        hint: 'Nome Completo',
+                        prefix: Icon(Icons.person),
+                        textInputType: TextInputType.multiline,
+                        enabled: true,
+                      ),
+                      CustomTextField(
+                        hint: 'Endereço',
+                        prefix: Icon(Icons.home),
+                        textInputType: TextInputType.text,
+                        maxLines: 2,
+                        enabled: true,
+                      ),
+                      CustomTextField(
+                        hint: 'Telefone',
+                        prefix: Icon(Icons.phone_android),
+                        textInputType: TextInputType.phone,
+                        enabled: true,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
