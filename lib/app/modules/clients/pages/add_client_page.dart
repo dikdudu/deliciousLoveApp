@@ -1,6 +1,7 @@
 import 'package:deliciousloveapp/app/modules/clients/clients_controller.dart';
 import 'package:deliciousloveapp/app/shared/widgets/custom_text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class AddClientPage extends StatefulWidget {
@@ -30,17 +31,14 @@ class _AddClientPageState extends ModularState<AddClientPage, ClientsController>
       ),
       body: Column(
         children: <Widget>[
-          Container(
-            height: 80,
-            color: Color.fromARGB(255, 246, 134, 189),
-          ),
           Expanded(
-            child: Container(
+            child: DecoratedBox(
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 255, 255, 255),
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(45.0),
-                    topRight: Radius.circular(45.0)),
+                    topRight: Radius.circular(45.0),
+                ),
               ),
               child: SingleChildScrollView(
                 child: Padding(
@@ -49,13 +47,13 @@ class _AddClientPageState extends ModularState<AddClientPage, ClientsController>
                     children: <Widget>[
                       CustomTextField(
                         hint: 'Nome Completo',
-                        prefix: Icon(Icons.person),
+                        prefix: const Icon(Icons.person),
                         textInputType: TextInputType.multiline,
                         enabled: true,
                       ),
                       CustomTextField(
                         hint: 'Endereço',
-                        prefix: Icon(Icons.home),
+                        prefix: const Icon(Icons.home),
                         textInputType: TextInputType.text,
                         maxLines: 2,
                         enabled: true,
