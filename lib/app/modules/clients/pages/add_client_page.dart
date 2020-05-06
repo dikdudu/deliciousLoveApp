@@ -43,7 +43,7 @@ class _AddClientPageState extends ModularState<AddClientPage, ClientsController>
                     topRight: Radius.circular(45.0)),
               ),
               child: SingleChildScrollView(
-                child: Container(
+                child: Padding(
                   padding: EdgeInsets.all(20),
                   child: Column(
                     children: <Widget>[
