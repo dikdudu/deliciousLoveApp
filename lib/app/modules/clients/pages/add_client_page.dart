@@ -60,7 +60,7 @@ class _AddClientPageState extends ModularState<AddClientPage, ClientsController>
                       ),
                       CustomTextField(
                         hint: 'Telefone',
-                        prefix: Icon(Icons.phone_android),
+                        prefix: const Icon(Icons.phone_android),
                         textInputType: TextInputType.phone,
                         enabled: true,
                       ),
