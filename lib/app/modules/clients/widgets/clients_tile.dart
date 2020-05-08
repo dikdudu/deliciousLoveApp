@@ -46,7 +46,7 @@ class _ClientTileState extends ModularState<ClientTile, ClientsController> {
                       decoration: BoxDecoration(
                         color: Color.fromARGB(100,254, 201, 241),
                         borderRadius: BorderRadius.all(
-                            Radius.circular(10)
+                            Radius.circular(50)
                         ),
                       ),
                       child: ListTile(
