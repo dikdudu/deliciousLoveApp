@@ -2,6 +2,7 @@ import 'package:deliciousloveapp/app/modules/clients/clients_controller.dart';
 import 'package:deliciousloveapp/app/shared/widgets/custom_text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class AddClientPage extends StatefulWidget {
@@ -21,9 +22,13 @@ class _AddClientPageState extends ModularState<AddClientPage, ClientsController>
         title: Text("Cadastrar Cliente"),
         centerTitle: true,
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.save),
-            onPressed: (){},
+          Observer(
+            builder: (_) {
+              return IconButton(
+                icon: Icon(Icons.save),
+                onPressed: controller.isFormValid ? (){} : null,
+              );
+            }
           ),
         ],
       ),
@@ -41,28 +46,35 @@ class _AddClientPageState extends ModularState<AddClientPage, ClientsController>
               child: SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.all(20),
-                  child: Column(
-                    children: <Widget>[
-                      CustomTextField(
-                        hint: 'Nome Completo',
-                        prefix: const Icon(Icons.person),
-                        textInputType: TextInputType.multiline,
-                        enabled: true,
-                      ),
-                      CustomTextField(
-                        hint: 'Endereço',
-                        prefix: const Icon(Icons.home),
-                        textInputType: TextInputType.text,
-                        maxLines: 2,
-                        enabled: true,
-                      ),
-                      CustomTextField(
-                        hint: 'Telefone',
-                        prefix: const Icon(Icons.phone_android),
-                        textInputType: TextInputType.phone,
-                        enabled: true,
-                      ),
-                    ],
+                  child: Observer(
+                    builder: (_){
+                      return Column(
+                        children: <Widget>[
+                          CustomTextField(
+                            hint: 'Nome Completo',
+                            prefix: const Icon(Icons.person),
+                            textInputType: TextInputType.multiline,
+                            enabled: true,
+                            onChanged: controller.setNameClient,
+                          ),
+                          CustomTextField(
+                            hint: 'Endereço',
+                            prefix: const Icon(Icons.home),
+                            textInputType: TextInputType.text,
+                            maxLines: 2,
+                            enabled: true,
+                            onChanged: controller.setAddressClient,
+                          ),
+                          CustomTextField(
+                            hint: 'Telefone',
+                            prefix: const Icon(Icons.phone_android),
+                            textInputType: TextInputType.phone,
+                            enabled: true,
+                            onChanged: controller.setPhoneClient,
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ),
               ),
