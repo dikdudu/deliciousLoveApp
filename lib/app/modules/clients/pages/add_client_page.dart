@@ -10,6 +10,24 @@ class AddClientPage extends StatefulWidget {
 }
 
 class _AddClientPageState extends ModularState<AddClientPage, ClientsController> {
+  final _nameController = TextEditingController();
+  final _addressController = TextEditingController();
+  final _phoneController = TextEditingController();
+
+  ClientsController _clientsController;
+
+  _submitForm() {
+    final name = _nameController.text;
+    final address = _addressController.text;
+    final phone = _phoneController.text;
+
+    if (name.isEmpty || address.isEmpty || phone.isEmpty) {
+      return;
+    }
+
+    _clientsController.addClient(name, address, phone);
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +41,7 @@ class _AddClientPageState extends ModularState<AddClientPage, ClientsController>
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.save),
-            onPressed: () {
-
-            },
+            onPressed: _submitForm,
           ),
         ],
       ),
@@ -50,6 +66,7 @@ class _AddClientPageState extends ModularState<AddClientPage, ClientsController>
                         prefix: const Icon(Icons.person),
                         textInputType: TextInputType.multiline,
                         enabled: true,
+                        controller: _nameController,
                       ),
                       CustomTextField(
                         hint: 'Endereço',
@@ -57,12 +74,15 @@ class _AddClientPageState extends ModularState<AddClientPage, ClientsController>
                         textInputType: TextInputType.text,
                         maxLines: 2,
                         enabled: true,
+                        controller: _addressController,
+
                       ),
                       CustomTextField(
                         hint: 'Telefone',
                         prefix: const Icon(Icons.phone_android),
                         textInputType: TextInputType.phone,
                         enabled: true,
+                        controller: _phoneController,
                       ),
                     ],
                   ),
