@@ -10,8 +10,8 @@ class AddClientPage extends StatefulWidget {
   _AddClientPageState createState() => _AddClientPageState();
 }
 
-class _AddClientPageState extends ModularState<AddClientPage, ClientsController> {
-
+class _AddClientPageState
+    extends ModularState<AddClientPage, ClientsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,12 +23,12 @@ class _AddClientPageState extends ModularState<AddClientPage, ClientsController>
         centerTitle: true,
         actions: <Widget>[
           Observer(
-            builder: (_) {
+            builder: (_){
               return IconButton(
                 icon: Icon(Icons.save),
-                onPressed: controller.isFormValid ? (){} : null,
+                onPressed: controller.isFormValid ? controller.addClient : null,
               );
-            }
+            },
           ),
         ],
       ),
@@ -39,42 +39,38 @@ class _AddClientPageState extends ModularState<AddClientPage, ClientsController>
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 255, 255, 255),
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(45.0),
-                    topRight: Radius.circular(45.0),
+                  topLeft: Radius.circular(45.0),
+                  topRight: Radius.circular(45.0),
                 ),
               ),
               child: SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.all(20),
-                  child: Observer(
-                    builder: (_){
-                      return Column(
-                        children: <Widget>[
-                          CustomTextField(
-                            hint: 'Nome Completo',
-                            prefix: const Icon(Icons.person),
-                            textInputType: TextInputType.multiline,
-                            enabled: true,
-                            onChanged: controller.setNameClient,
-                          ),
-                          CustomTextField(
-                            hint: 'Endereço',
-                            prefix: const Icon(Icons.home),
-                            textInputType: TextInputType.text,
-                            maxLines: 2,
-                            enabled: true,
-                            onChanged: controller.setAddressClient,
-                          ),
-                          CustomTextField(
-                            hint: 'Telefone',
-                            prefix: const Icon(Icons.phone_android),
-                            textInputType: TextInputType.phone,
-                            enabled: true,
-                            onChanged: controller.setPhoneClient,
-                          ),
-                        ],
-                      );
-                    },
+                  child: Column(
+                    children: <Widget>[
+                      CustomTextField(
+                        hint: 'Nome Completo',
+                        prefix: const Icon(Icons.person),
+                        textInputType: TextInputType.multiline,
+                        enabled: true,
+                        onChanged: controller.setNameClient,
+                      ),
+                      CustomTextField(
+                        hint: 'Endereço',
+                        prefix: const Icon(Icons.home),
+                        textInputType: TextInputType.text,
+                        maxLines: 2,
+                        enabled: true,
+                        onChanged: controller.setAddressClient,
+                      ),
+                      CustomTextField(
+                        hint: 'Telefone',
+                        prefix: const Icon(Icons.phone_android),
+                        textInputType: TextInputType.phone,
+                        enabled: true,
+                        onChanged: controller.setPhoneClient,
+                      ),
+                    ],
                   ),
                 ),
               ),

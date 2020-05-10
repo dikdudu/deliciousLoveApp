@@ -83,6 +83,13 @@ mixin _$ClientsController on _ClientsController, Store {
     }, _$clientsListAtom, name: '${_$clientsListAtom.name}_set');
   }
 
+  final _$addClientAsyncAction = AsyncAction('addClient');
+
+  @override
+  Future addClient() {
+    return _$addClientAsyncAction.run(() => super.addClient());
+  }
+
   final _$_ClientsControllerActionController =
       ActionController(name: '_ClientsController');
 

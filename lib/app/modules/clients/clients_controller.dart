@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:deliciousloveapp/app/modules/clients/models/clients_model.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'repositories/clients_repository_interface.dart';
 import 'package:mobx/mobx.dart';
@@ -10,6 +12,8 @@ class ClientsController = _ClientsController with _$ClientsController;
 
 abstract class _ClientsController with Store {
   final IClientsRepository repository;
+
+  DocumentReference reference;
 
   @observable
   String nameClient = "";
@@ -32,8 +36,24 @@ abstract class _ClientsController with Store {
   @computed
   bool get isFormValid => nameClient.isNotEmpty && addressClient.isNotEmpty && phoneClient.isNotEmpty;
 
+  @action
+  addClient() async{
+    if(reference == null){
+      reference = await Firestore.instance.collection('clients').add({
+        'nome': nameClient,
+        'phone': phoneClient,
+        'address': addressClient,
+      });
+    }else {
+      reference.updateData({
+        'nome': nameClient,
+        'phone': phoneClient,
+        'address': addressClient,
+      });
+    }
 
 
+  }
 
   //Buscar dados clients
 
@@ -42,7 +62,9 @@ abstract class _ClientsController with Store {
 
   _ClientsController(IClientsRepository this.repository){
     getList();
+
   }
+
 
   @action
   getList(){

@@ -7,7 +7,7 @@ class ClientsModel {
 
   DocumentReference reference;
 
-  ClientsModel({this.name, this.phone, this.address,this.reference});
+  ClientsModel({this.name = '', this.phone = '', this.address = '', this.reference});
 
 
   factory ClientsModel.fromDocument(DocumentSnapshot doc){
@@ -15,6 +15,5 @@ class ClientsModel {
     return ClientsModel(name: doc['nome'], phone: doc['phone'], address: doc['address'], reference: doc.reference);
 
   }
-
 
 }
