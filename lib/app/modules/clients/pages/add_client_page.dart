@@ -1,6 +1,9 @@
+
 import 'package:deliciousloveapp/app/modules/clients/clients_controller.dart';
+import 'package:deliciousloveapp/app/shared/animation/fade_animation.dart';
 import 'package:deliciousloveapp/app/shared/widgets/custom_text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -82,13 +85,44 @@ class _AddClientPageState
                       ),
                      Observer(
                        builder: (_){
-                         return CustomTextField(
-                           hint: 'Telefone',
-                           prefix: const Icon(Icons.phone_android),
-                           textInputType: TextInputType.phone,
-                           enabled: !controller.loading,
-                           onChanged: controller.setPhoneClient,
-                         );
+                         return FadeAnimation(0,Container(
+                           margin: EdgeInsets.only(top: 8),
+                           padding: EdgeInsets.all(4),
+                           decoration: BoxDecoration(
+                               shape: BoxShape.rectangle,
+                               color: Colors.white,
+                               borderRadius: BorderRadius.circular(50),
+                               boxShadow: [
+                                 BoxShadow(
+                                     color: Color.fromRGBO(255, 105, 180, .2),
+                                     blurRadius: 10.0,
+                                     offset: Offset(0, 2)
+                                 )
+                               ]
+                           ),
+                           child: TextFormField(
+                             decoration: InputDecoration(
+                               hintStyle: TextStyle(color: Colors.grey[400]),
+                               border: InputBorder.none,
+                               hintText: 'Telefone',
+                               labelStyle: TextStyle(
+                                 fontWeight: FontWeight.bold,
+                                 color: Colors.grey,
+                                 fontSize: 16,
+                               ),
+                               prefixIcon: const Icon(Icons.phone_android),
+                             ),
+                             keyboardType: const TextInputType.numberWithOptions(
+                               decimal: true,
+                               signed: false,
+                             ),
+                             inputFormatters: [
+                               WhitelistingTextInputFormatter.digitsOnly,
+                             ],
+                             enabled: !controller.loading,
+                             onChanged: controller.setPhoneClient,
+                           ),
+                         ));
                        } ,
                      ),
                     ],

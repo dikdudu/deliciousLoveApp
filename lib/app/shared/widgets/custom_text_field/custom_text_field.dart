@@ -13,9 +13,10 @@ class CustomTextField extends StatelessWidget {
   final bool enabled;
   final FormFieldSetter<String> onSaved;
   final int maxLines;
+  final Function validator;
 
   CustomTextField({this.hint, this.prefix, this.suffix, this.obscure = false,
-    this.textInputType, this.onChanged, this.enabled, this.controller, this.onSaved, this.maxLines
+    this.textInputType, this.onChanged, this.enabled, this.controller, this.onSaved, this.maxLines, this.validator
   });
 
   @override
@@ -42,6 +43,7 @@ class CustomTextField extends StatelessWidget {
       maxLines: maxLines,
       onChanged: onChanged,
       enabled: enabled,
+      validator: validator,
       decoration: InputDecoration(
         hintStyle: TextStyle(color: Colors.grey[400]),
         hintText: hint,

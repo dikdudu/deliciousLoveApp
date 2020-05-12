@@ -43,7 +43,7 @@ abstract class _ClientsController with Store {
   bool get isAddressValid => addressClient.isNotEmpty && addressClient.length > 4;
 
   @computed
-  bool get isPhoneValid => phoneClient.isNotEmpty && phoneClient.length >= 8;
+  bool get isPhoneValid => phoneClient.isNotEmpty && phoneClient.length >= 9;
 
   @computed
   Function get savePressed =>
