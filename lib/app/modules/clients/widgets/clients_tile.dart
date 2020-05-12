@@ -32,6 +32,7 @@ class _ClientTileState extends ModularState<ClientTile, ClientsController> {
           }
 
           List<ClientsModel> list = controller.clientsList.data;
+
           return GestureDetector(
             onLongPress: () {
               _showDialog();
@@ -46,7 +47,7 @@ class _ClientTileState extends ModularState<ClientTile, ClientsController> {
                       decoration: BoxDecoration(
                         color: Color.fromARGB(100,254, 201, 241),
                         borderRadius: BorderRadius.all(
-                            Radius.circular(50)
+                            Radius.circular(20)
                         ),
                       ),
                       child: ListTile(
@@ -67,7 +68,7 @@ class _ClientTileState extends ModularState<ClientTile, ClientsController> {
                                 style: TextStyle(color: Colors.black),
                               ),
                               Text(
-                                "Gastos: 0",
+                                "Gastos: R\$ 0",
                                 style: TextStyle(color: Colors.black),
                               ),
                             ],

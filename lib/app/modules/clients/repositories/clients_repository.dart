@@ -9,6 +9,10 @@ class ClientsRepository implements IClientsRepository{
 
   ClientsRepository(this.firestore);
 
+  DocumentReference reference;
+
+  ClientsModel client;
+
   @override
   Stream<List<ClientsModel>> getClients() {
     return firestore.collection('clients').snapshots().map((query){
@@ -17,5 +21,24 @@ class ClientsRepository implements IClientsRepository{
       }).toList();
     });
   }
+
+
+  @override
+  setClient({String name, String address, String phone}) async{
+    if(reference == null){
+      reference = await Firestore.instance.collection('clients').add({
+        'nome': client.name,
+        'phone': client.phone,
+        'address': client.address,
+      });
+    }else {
+      reference.updateData({
+        'nome': client.name,
+        'phone': client.phone,
+        'address': client.address,
+      });
+    }
+  }
+
 
 }

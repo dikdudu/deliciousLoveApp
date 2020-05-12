@@ -83,13 +83,6 @@ mixin _$ClientsController on _ClientsController, Store {
     }, _$clientsListAtom, name: '${_$clientsListAtom.name}_set');
   }
 
-  final _$addClientAsyncAction = AsyncAction('addClient');
-
-  @override
-  Future addClient() {
-    return _$addClientAsyncAction.run(() => super.addClient());
-  }
-
   final _$_ClientsControllerActionController =
       ActionController(name: '_ClientsController');
 
@@ -118,6 +111,16 @@ mixin _$ClientsController on _ClientsController, Store {
     final _$actionInfo = _$_ClientsControllerActionController.startAction();
     try {
       return super.setPhoneClient(value);
+    } finally {
+      _$_ClientsControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic addClient() {
+    final _$actionInfo = _$_ClientsControllerActionController.startAction();
+    try {
+      return super.addClient();
     } finally {
       _$_ClientsControllerActionController.endAction(_$actionInfo);
     }
