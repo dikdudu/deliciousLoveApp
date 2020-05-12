@@ -23,10 +23,10 @@ class _AddClientPageState
         centerTitle: true,
         actions: <Widget>[
           Observer(
-            builder: (_){
+            builder: (_) {
               return IconButton(
                 icon: Icon(Icons.save),
-                onPressed: controller.isFormValid ? controller.addClient : null,
+                onPressed: controller.savePressed,
               );
             },
           ),
@@ -48,28 +48,50 @@ class _AddClientPageState
                   padding: EdgeInsets.all(20),
                   child: Column(
                     children: <Widget>[
-                      CustomTextField(
-                        hint: 'Nome Completo',
-                        prefix: const Icon(Icons.person),
-                        textInputType: TextInputType.multiline,
-                        enabled: true,
-                        onChanged: controller.setNameClient,
+                      Observer(
+                        builder: (_) {
+                          return controller.loading
+                              ? CircularProgressIndicator(
+                                  valueColor:
+                                      AlwaysStoppedAnimation(Colors.pink[300]),
+                                )
+                              : Container();
+                        },
                       ),
-                      CustomTextField(
-                        hint: 'Endereço',
-                        prefix: const Icon(Icons.home),
-                        textInputType: TextInputType.text,
-                        maxLines: 2,
-                        enabled: true,
-                        onChanged: controller.setAddressClient,
+                      Observer(
+                        builder: (_){
+                          return CustomTextField(
+                            hint: 'Nome Completo',
+                            prefix: const Icon(Icons.person),
+                            textInputType: TextInputType.multiline,
+                            enabled: !controller.loading,
+                            onChanged: controller.setNameClient,
+                          );
+                        },
                       ),
-                      CustomTextField(
-                        hint: 'Telefone',
-                        prefix: const Icon(Icons.phone_android),
-                        textInputType: TextInputType.phone,
-                        enabled: true,
-                        onChanged: controller.setPhoneClient,
+                      Observer(
+                        builder: (_){
+                          return  CustomTextField(
+                            hint: 'Endereço',
+                            prefix: const Icon(Icons.home),
+                            textInputType: TextInputType.text,
+                            maxLines: 2,
+                            enabled: !controller.loading,
+                            onChanged: controller.setAddressClient,
+                          );
+                        },
                       ),
+                     Observer(
+                       builder: (_){
+                         return CustomTextField(
+                           hint: 'Telefone',
+                           prefix: const Icon(Icons.phone_android),
+                           textInputType: TextInputType.phone,
+                           enabled: !controller.loading,
+                           onChanged: controller.setPhoneClient,
+                         );
+                       } ,
+                     ),
                     ],
                   ),
                 ),

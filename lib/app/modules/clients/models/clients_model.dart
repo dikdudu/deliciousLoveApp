@@ -11,10 +11,7 @@ class ClientsModel {
 
 
   factory ClientsModel.fromDocument(DocumentSnapshot doc){
-
       return ClientsModel(name: doc['nome'], phone: doc['phone'], address: doc['address'], reference: doc.reference);
   }
-
-
 
 }

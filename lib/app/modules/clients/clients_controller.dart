@@ -24,6 +24,9 @@ abstract class _ClientsController with Store {
   @observable
   String phoneClient = "";
 
+  @observable
+  bool loading = false;
+
   @action
   void setNameClient(String value) => nameClient = value;
 
@@ -34,16 +37,34 @@ abstract class _ClientsController with Store {
   void setPhoneClient(String value) => phoneClient = value;
 
   @computed
-  bool get isFormValid => nameClient.isNotEmpty && addressClient.isNotEmpty && phoneClient.isNotEmpty;
+  bool get isNameValid => nameClient.isNotEmpty && nameClient.length > 3;
+
+  @computed
+  bool get isAddressValid => addressClient.isNotEmpty && addressClient.length > 4;
+
+  @computed
+  bool get isPhoneValid => phoneClient.isNotEmpty && phoneClient.length >= 8;
+
+  @computed
+  Function get savePressed =>
+      (isNameValid && isAddressValid && isPhoneValid && !loading) ? addClient : null;
 
   @action
-  addClient() {
-    repository.setClient(
+  Future<void> addClient() async {
+    loading = true;
+
+    await repository.setClient(
       name: nameClient,
       phone: phoneClient,
       address: addressClient,
     );
+
+    loading = false;
+
   }
+
+
+
 
   //Buscar dados clients
 

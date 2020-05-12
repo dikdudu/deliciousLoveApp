@@ -9,11 +9,29 @@ part of 'clients_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ClientsController on _ClientsController, Store {
-  Computed<bool> _$isFormValidComputed;
+  Computed<bool> _$isNameValidComputed;
 
   @override
-  bool get isFormValid =>
-      (_$isFormValidComputed ??= Computed<bool>(() => super.isFormValid)).value;
+  bool get isNameValid =>
+      (_$isNameValidComputed ??= Computed<bool>(() => super.isNameValid)).value;
+  Computed<bool> _$isAddressValidComputed;
+
+  @override
+  bool get isAddressValid =>
+      (_$isAddressValidComputed ??= Computed<bool>(() => super.isAddressValid))
+          .value;
+  Computed<bool> _$isPhoneValidComputed;
+
+  @override
+  bool get isPhoneValid =>
+      (_$isPhoneValidComputed ??= Computed<bool>(() => super.isPhoneValid))
+          .value;
+  Computed<Function> _$savePressedComputed;
+
+  @override
+  Function get savePressed =>
+      (_$savePressedComputed ??= Computed<Function>(() => super.savePressed))
+          .value;
 
   final _$nameClientAtom = Atom(name: '_ClientsController.nameClient');
 
@@ -66,6 +84,23 @@ mixin _$ClientsController on _ClientsController, Store {
     }, _$phoneClientAtom, name: '${_$phoneClientAtom.name}_set');
   }
 
+  final _$loadingAtom = Atom(name: '_ClientsController.loading');
+
+  @override
+  bool get loading {
+    _$loadingAtom.context.enforceReadPolicy(_$loadingAtom);
+    _$loadingAtom.reportObserved();
+    return super.loading;
+  }
+
+  @override
+  set loading(bool value) {
+    _$loadingAtom.context.conditionallyRunInAction(() {
+      super.loading = value;
+      _$loadingAtom.reportChanged();
+    }, _$loadingAtom, name: '${_$loadingAtom.name}_set');
+  }
+
   final _$clientsListAtom = Atom(name: '_ClientsController.clientsList');
 
   @override
@@ -81,6 +116,13 @@ mixin _$ClientsController on _ClientsController, Store {
       super.clientsList = value;
       _$clientsListAtom.reportChanged();
     }, _$clientsListAtom, name: '${_$clientsListAtom.name}_set');
+  }
+
+  final _$addClientAsyncAction = AsyncAction('addClient');
+
+  @override
+  Future<void> addClient() {
+    return _$addClientAsyncAction.run(() => super.addClient());
   }
 
   final _$_ClientsControllerActionController =
@@ -117,16 +159,6 @@ mixin _$ClientsController on _ClientsController, Store {
   }
 
   @override
-  dynamic addClient() {
-    final _$actionInfo = _$_ClientsControllerActionController.startAction();
-    try {
-      return super.addClient();
-    } finally {
-      _$_ClientsControllerActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   dynamic getList() {
     final _$actionInfo = _$_ClientsControllerActionController.startAction();
     try {
@@ -139,7 +171,7 @@ mixin _$ClientsController on _ClientsController, Store {
   @override
   String toString() {
     final string =
-        'nameClient: ${nameClient.toString()},addressClient: ${addressClient.toString()},phoneClient: ${phoneClient.toString()},clientsList: ${clientsList.toString()},isFormValid: ${isFormValid.toString()}';
+        'nameClient: ${nameClient.toString()},addressClient: ${addressClient.toString()},phoneClient: ${phoneClient.toString()},loading: ${loading.toString()},clientsList: ${clientsList.toString()},isNameValid: ${isNameValid.toString()},isAddressValid: ${isAddressValid.toString()},isPhoneValid: ${isPhoneValid.toString()},savePressed: ${savePressed.toString()}';
     return '{$string}';
   }
 }
