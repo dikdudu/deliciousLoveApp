@@ -75,7 +75,6 @@ class _AddClientPageState
                             hint: 'Endereço',
                             prefix: const Icon(Icons.home),
                             textInputType: TextInputType.text,
-                            maxLines: 2,
                             enabled: !controller.loading,
                             onChanged: controller.setAddressClient,
                           );
