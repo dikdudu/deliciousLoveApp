@@ -98,7 +98,9 @@ class _ClientTileState extends ModularState<ClientTile, ClientsController> {
                   ),
                   FlatButton(
                     child: Text("Editar"),
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.pushNamed(context, "clients/client");
+                    },
                   ),
                   FlatButton(
                     child: Text("Ver Historico de Pedidos"),

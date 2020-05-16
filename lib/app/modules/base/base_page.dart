@@ -1,4 +1,4 @@
-import 'package:deliciousloveapp/app/modules/clients/pages/clients_page.dart';
+import 'package:deliciousloveapp/app/modules/clients/clients_page.dart';
 import 'package:deliciousloveapp/app/modules/drawer/custom_drawer.dart';
 import 'package:deliciousloveapp/app/modules/home/home_page.dart';
 import 'package:deliciousloveapp/app/modules/orders/pages/oders_page.dart';
