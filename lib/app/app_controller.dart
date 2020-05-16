@@ -6,12 +6,4 @@ class AppController = _AppController with _$AppController;
 
 abstract class _AppController with Store{
 
-  @observable
-  String text = "";
-
-  @action
-  void setText(String texts){
-    text = texts;
-  }
-
 }
