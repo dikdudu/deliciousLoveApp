@@ -33,11 +33,7 @@ class _ClientTileState extends ModularState<ClientTile, ClientsController> {
 
           List<ClientsModel> list = controller.clientsList.data;
 
-          return GestureDetector(
-            onLongPress: () {
-              _showDialog();
-            },
-            child: Container(
+          return Container(
               child: ListView.builder(
                   itemCount: list.length,
                   itemBuilder: (_, index) {
@@ -45,73 +41,73 @@ class _ClientTileState extends ModularState<ClientTile, ClientsController> {
                     return Container(
                       margin: EdgeInsets.only(top: 5),
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(100,254, 201, 241),
-                        borderRadius: BorderRadius.all(
-                            Radius.circular(20)
-                        ),
+                        color: Color.fromARGB(100, 254, 201, 241),
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
                       child: ListTile(
-                          title: Text(
-                            model.name,
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          subtitle: Text(
-                            "fone: ${model.phone}",
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          trailing: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                "Pedidos: 0",
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              Text(
-                                "Gastos: R\$ 0",
-                                style: TextStyle(color: Colors.black),
-                              ),
-                            ],
-                          ),
+                        onLongPress: _showDialog,
+                        leading: CircleAvatar(
+                          backgroundImage: NetworkImage("https://cdn.icon-icons.com/icons2/1736/PNG/512/4043250-avatar-child-girl-kid_113270.png"),
                         ),
-
+                        title: Text(
+                          model.name,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        subtitle: Text(
+                          "Contato: ${model.phone}",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        trailing: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "Pedidos: 0",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            Text(
+                              "Gastos: R\$ 0",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ],
+                        ),
+                      ),
                     );
                   }),
-            ),
-          );
+            );
         },
       ),
     );
   }
 
-  _showDialog(){
+  _showDialog() {
     showDialog(
-      context: context,
-      builder: (_){
-        return AlertDialog(
-          title: Center(child: Text('Opções'),),
-          content: Container(
-            height: 150,
-            child: Column(
-              children: <Widget>[
-                FlatButton(
-                  child: Text("Ligar"),
-                  onPressed: (){},
-                ),
-                FlatButton(
-                  child: Text("Editar"),
-                  onPressed: (){},
-                ),
-                FlatButton(
-                  child: Text("Ver Historico de Pedidos"),
-                  onPressed: (){},
-                ),
-              ],
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: Center(
+              child: Text('Opções'),
             ),
-          ),
-        );
-      }
-    );
+            content: Container(
+              height: 150,
+              child: Column(
+                children: <Widget>[
+                  FlatButton(
+                    child: Text("Ligar"),
+                    onPressed: () {},
+                  ),
+                  FlatButton(
+                    child: Text("Editar"),
+                    onPressed: () {},
+                  ),
+                  FlatButton(
+                    child: Text("Ver Historico de Pedidos"),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
-
 }

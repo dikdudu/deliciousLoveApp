@@ -23,7 +23,7 @@ class ClientsRepository implements IClientsRepository{
 
 
   @override
-  setClient({String name, String address, String phone}) async{
+  saveClient({String name, String address, String phone}) async{
     if(reference == null){
       reference = await Firestore.instance.collection('clients').add({
         'nome': name,

@@ -53,7 +53,7 @@ abstract class _ClientsController with Store {
   Future<void> addClient() async {
     loading = true;
 
-    await repository.setClient(
+    await repository.saveClient(
       name: nameClient,
       phone: phoneClient,
       address: addressClient,

@@ -4,6 +4,6 @@ abstract class IClientsRepository{
 
   Stream<List<ClientsModel>> getClients();
 
-  setClient({String name, String address, String phone});
+  saveClient({String name, String address, String phone});
 
 }
