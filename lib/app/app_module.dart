@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:deliciousloveapp/app/app_controller.dart';
-import 'package:deliciousloveapp/app/modules/base/base_module.dart';
 import 'package:deliciousloveapp/app/shared/controllers/navigation_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -27,7 +26,7 @@ class AppModule extends MainModule {
 
   @override
   List<Router> get routers => [
-    Router(Modular.initialRoute, module: BaseModule()),
+    Router(Modular.initialRoute, module: HomeModule()),
     Router('/login', module: LoginModule()),
     Router('/home', module: HomeModule()),
     Router('/orders', module:  OrdersModule()),

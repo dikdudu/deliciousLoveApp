@@ -1,3 +1,4 @@
+import 'package:deliciousloveapp/app/modules/home/home_page.dart';
 import 'package:deliciousloveapp/app/shared/animation/fade_animation.dart';
 import 'package:deliciousloveapp/app/shared/widgets/custom_icon_buttom/custom_icon_button.dart';
 import 'package:deliciousloveapp/app/shared/widgets/custom_text_field/custom_text_field.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../modules/base/base_page.dart';
 import 'login_controller.dart';
 
 class LoginPage extends StatefulWidget {
@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
             (loggedIn){
           if(loggedIn)
             Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (_)=>BasePage())
+                MaterialPageRoute(builder: (_)=>HomePage())
             );
         }
     );

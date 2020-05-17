@@ -25,6 +25,7 @@ class IconSection extends StatelessWidget {
               iconData: Icons.home,
               onTap: () {
                 _setPage(0);
+                Navigator.pushNamed(context, '/');
               },
               highlighted: _navigationController.outPage == 0,
             ),
@@ -33,6 +34,7 @@ class IconSection extends StatelessWidget {
               iconData: Icons.list,
               onTap: () {
                 _setPage(1);
+                Navigator.pushNamed(context, '/orders');
               },
               highlighted: _navigationController.outPage == 1,
             ),
@@ -41,6 +43,7 @@ class IconSection extends StatelessWidget {
               iconData: Icons.supervisor_account,
               onTap: () {
                 _setPage(2);
+                Navigator.pushNamed(context, '/clients');
               },
               highlighted: _navigationController.outPage == 2,
             ),

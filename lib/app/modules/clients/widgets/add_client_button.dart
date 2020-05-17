@@ -7,7 +7,7 @@ class AddClientButton extends StatelessWidget {
       child: Icon(Icons.add),
       backgroundColor: Color.fromARGB(255, 246,134,189),
       onPressed: (){
-        Navigator.pushNamed(context, '/clients/addclient');
+        Navigator.pushNamed(context, '/clients/client');
       },
     );
   }

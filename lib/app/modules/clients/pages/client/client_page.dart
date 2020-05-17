@@ -20,7 +20,9 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
         title: Text(widget.title),
       ),
       body: Column(
-        children: <Widget>[],
+        children: <Widget>[
+
+        ],
       ),
     );
   }

@@ -1,6 +1,7 @@
-import 'package:deliciousloveapp/app/modules/clients/pages/add_client_page.dart';
 import 'package:deliciousloveapp/app/modules/clients/clients_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import 'pages/client/client_module.dart';
 
 
 class ClientsModule extends ChildModule {
@@ -11,7 +12,7 @@ class ClientsModule extends ChildModule {
   @override
   List<Router> get routers => [
     Router('/', child: (_, args) => ClientsPage()),
-    Router('/addclient', child: (_, args) => AddClientPage()),
+    Router('/client', module: ClientModule()),
 
   ];
 
