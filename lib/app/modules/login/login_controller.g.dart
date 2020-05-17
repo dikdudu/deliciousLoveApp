@@ -13,113 +13,107 @@ mixin _$LoginController on _LoginController, Store {
 
   @override
   bool get isEmailValid =>
-      (_$isEmailValidComputed ??= Computed<bool>(() => super.isEmailValid))
+      (_$isEmailValidComputed ??= Computed<bool>(() => super.isEmailValid,
+              name: '_LoginController.isEmailValid'))
           .value;
   Computed<bool> _$isPasswordValidComputed;
 
   @override
-  bool get isPasswordValid => (_$isPasswordValidComputed ??=
-          Computed<bool>(() => super.isPasswordValid))
-      .value;
+  bool get isPasswordValid =>
+      (_$isPasswordValidComputed ??= Computed<bool>(() => super.isPasswordValid,
+              name: '_LoginController.isPasswordValid'))
+          .value;
   Computed<bool> _$isVisiblePassComputed;
 
   @override
   bool get isVisiblePass =>
-      (_$isVisiblePassComputed ??= Computed<bool>(() => super.isVisiblePass))
+      (_$isVisiblePassComputed ??= Computed<bool>(() => super.isVisiblePass,
+              name: '_LoginController.isVisiblePass'))
           .value;
   Computed<Function> _$loginPressedComputed;
 
   @override
   Function get loginPressed =>
-      (_$loginPressedComputed ??= Computed<Function>(() => super.loginPressed))
+      (_$loginPressedComputed ??= Computed<Function>(() => super.loginPressed,
+              name: '_LoginController.loginPressed'))
           .value;
 
   final _$emailAtom = Atom(name: '_LoginController.email');
 
   @override
   String get email {
-    _$emailAtom.context.enforceReadPolicy(_$emailAtom);
-    _$emailAtom.reportObserved();
+    _$emailAtom.reportRead();
     return super.email;
   }
 
   @override
   set email(String value) {
-    _$emailAtom.context.conditionallyRunInAction(() {
+    _$emailAtom.reportWrite(value, super.email, () {
       super.email = value;
-      _$emailAtom.reportChanged();
-    }, _$emailAtom, name: '${_$emailAtom.name}_set');
+    });
   }
 
   final _$passwordAtom = Atom(name: '_LoginController.password');
 
   @override
   String get password {
-    _$passwordAtom.context.enforceReadPolicy(_$passwordAtom);
-    _$passwordAtom.reportObserved();
+    _$passwordAtom.reportRead();
     return super.password;
   }
 
   @override
   set password(String value) {
-    _$passwordAtom.context.conditionallyRunInAction(() {
+    _$passwordAtom.reportWrite(value, super.password, () {
       super.password = value;
-      _$passwordAtom.reportChanged();
-    }, _$passwordAtom, name: '${_$passwordAtom.name}_set');
+    });
   }
 
   final _$passwordVisibleAtom = Atom(name: '_LoginController.passwordVisible');
 
   @override
   bool get passwordVisible {
-    _$passwordVisibleAtom.context.enforceReadPolicy(_$passwordVisibleAtom);
-    _$passwordVisibleAtom.reportObserved();
+    _$passwordVisibleAtom.reportRead();
     return super.passwordVisible;
   }
 
   @override
   set passwordVisible(bool value) {
-    _$passwordVisibleAtom.context.conditionallyRunInAction(() {
+    _$passwordVisibleAtom.reportWrite(value, super.passwordVisible, () {
       super.passwordVisible = value;
-      _$passwordVisibleAtom.reportChanged();
-    }, _$passwordVisibleAtom, name: '${_$passwordVisibleAtom.name}_set');
+    });
   }
 
   final _$loadingAtom = Atom(name: '_LoginController.loading');
 
   @override
   bool get loading {
-    _$loadingAtom.context.enforceReadPolicy(_$loadingAtom);
-    _$loadingAtom.reportObserved();
+    _$loadingAtom.reportRead();
     return super.loading;
   }
 
   @override
   set loading(bool value) {
-    _$loadingAtom.context.conditionallyRunInAction(() {
+    _$loadingAtom.reportWrite(value, super.loading, () {
       super.loading = value;
-      _$loadingAtom.reportChanged();
-    }, _$loadingAtom, name: '${_$loadingAtom.name}_set');
+    });
   }
 
   final _$loggedInAtom = Atom(name: '_LoginController.loggedIn');
 
   @override
   bool get loggedIn {
-    _$loggedInAtom.context.enforceReadPolicy(_$loggedInAtom);
-    _$loggedInAtom.reportObserved();
+    _$loggedInAtom.reportRead();
     return super.loggedIn;
   }
 
   @override
   set loggedIn(bool value) {
-    _$loggedInAtom.context.conditionallyRunInAction(() {
+    _$loggedInAtom.reportWrite(value, super.loggedIn, () {
       super.loggedIn = value;
-      _$loggedInAtom.reportChanged();
-    }, _$loggedInAtom, name: '${_$loggedInAtom.name}_set');
+    });
   }
 
-  final _$loginAsyncAction = AsyncAction('login');
+  final _$loginAsyncAction = AsyncAction('_LoginController.login');
 
   @override
   Future<void> login() {
@@ -131,7 +125,8 @@ mixin _$LoginController on _LoginController, Store {
 
   @override
   void setEmail(String value) {
-    final _$actionInfo = _$_LoginControllerActionController.startAction();
+    final _$actionInfo = _$_LoginControllerActionController.startAction(
+        name: '_LoginController.setEmail');
     try {
       return super.setEmail(value);
     } finally {
@@ -141,7 +136,8 @@ mixin _$LoginController on _LoginController, Store {
 
   @override
   void setPassword(String value) {
-    final _$actionInfo = _$_LoginControllerActionController.startAction();
+    final _$actionInfo = _$_LoginControllerActionController.startAction(
+        name: '_LoginController.setPassword');
     try {
       return super.setPassword(value);
     } finally {
@@ -151,7 +147,8 @@ mixin _$LoginController on _LoginController, Store {
 
   @override
   void togglePasswordVisibility() {
-    final _$actionInfo = _$_LoginControllerActionController.startAction();
+    final _$actionInfo = _$_LoginControllerActionController.startAction(
+        name: '_LoginController.togglePasswordVisibility');
     try {
       return super.togglePasswordVisibility();
     } finally {
@@ -161,8 +158,16 @@ mixin _$LoginController on _LoginController, Store {
 
   @override
   String toString() {
-    final string =
-        'email: ${email.toString()},password: ${password.toString()},passwordVisible: ${passwordVisible.toString()},loading: ${loading.toString()},loggedIn: ${loggedIn.toString()},isEmailValid: ${isEmailValid.toString()},isPasswordValid: ${isPasswordValid.toString()},isVisiblePass: ${isVisiblePass.toString()},loginPressed: ${loginPressed.toString()}';
-    return '{$string}';
+    return '''
+email: ${email},
+password: ${password},
+passwordVisible: ${passwordVisible},
+loading: ${loading},
+loggedIn: ${loggedIn},
+isEmailValid: ${isEmailValid},
+isPasswordValid: ${isPasswordValid},
+isVisiblePass: ${isVisiblePass},
+loginPressed: ${loginPressed}
+    ''';
   }
 }

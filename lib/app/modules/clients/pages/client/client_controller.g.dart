@@ -9,31 +9,133 @@ part of 'client_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ClientController on _ClientControllerBase, Store {
-  final _$valueAtom = Atom(name: '_ClientControllerBase.value');
+  Computed<bool> _$isNameValidComputed;
 
   @override
-  int get value {
-    _$valueAtom.context.enforceReadPolicy(_$valueAtom);
-    _$valueAtom.reportObserved();
-    return super.value;
+  bool get isNameValid =>
+      (_$isNameValidComputed ??= Computed<bool>(() => super.isNameValid,
+              name: '_ClientControllerBase.isNameValid'))
+          .value;
+  Computed<bool> _$isAddressValidComputed;
+
+  @override
+  bool get isAddressValid =>
+      (_$isAddressValidComputed ??= Computed<bool>(() => super.isAddressValid,
+              name: '_ClientControllerBase.isAddressValid'))
+          .value;
+  Computed<bool> _$isPhoneValidComputed;
+
+  @override
+  bool get isPhoneValid =>
+      (_$isPhoneValidComputed ??= Computed<bool>(() => super.isPhoneValid,
+              name: '_ClientControllerBase.isPhoneValid'))
+          .value;
+  Computed<Function> _$savePressedComputed;
+
+  @override
+  Function get savePressed =>
+      (_$savePressedComputed ??= Computed<Function>(() => super.savePressed,
+              name: '_ClientControllerBase.savePressed'))
+          .value;
+
+  final _$nameClientAtom = Atom(name: '_ClientControllerBase.nameClient');
+
+  @override
+  String get nameClient {
+    _$nameClientAtom.reportRead();
+    return super.nameClient;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.context.conditionallyRunInAction(() {
-      super.value = value;
-      _$valueAtom.reportChanged();
-    }, _$valueAtom, name: '${_$valueAtom.name}_set');
+  set nameClient(String value) {
+    _$nameClientAtom.reportWrite(value, super.nameClient, () {
+      super.nameClient = value;
+    });
+  }
+
+  final _$addressClientAtom = Atom(name: '_ClientControllerBase.addressClient');
+
+  @override
+  String get addressClient {
+    _$addressClientAtom.reportRead();
+    return super.addressClient;
+  }
+
+  @override
+  set addressClient(String value) {
+    _$addressClientAtom.reportWrite(value, super.addressClient, () {
+      super.addressClient = value;
+    });
+  }
+
+  final _$phoneClientAtom = Atom(name: '_ClientControllerBase.phoneClient');
+
+  @override
+  String get phoneClient {
+    _$phoneClientAtom.reportRead();
+    return super.phoneClient;
+  }
+
+  @override
+  set phoneClient(String value) {
+    _$phoneClientAtom.reportWrite(value, super.phoneClient, () {
+      super.phoneClient = value;
+    });
+  }
+
+  final _$loadingAtom = Atom(name: '_ClientControllerBase.loading');
+
+  @override
+  bool get loading {
+    _$loadingAtom.reportRead();
+    return super.loading;
+  }
+
+  @override
+  set loading(bool value) {
+    _$loadingAtom.reportWrite(value, super.loading, () {
+      super.loading = value;
+    });
+  }
+
+  final _$addClientAsyncAction = AsyncAction('_ClientControllerBase.addClient');
+
+  @override
+  Future<void> addClient() {
+    return _$addClientAsyncAction.run(() => super.addClient());
   }
 
   final _$_ClientControllerBaseActionController =
       ActionController(name: '_ClientControllerBase');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_ClientControllerBaseActionController.startAction();
+  void setNameClient(String value) {
+    final _$actionInfo = _$_ClientControllerBaseActionController.startAction(
+        name: '_ClientControllerBase.setNameClient');
     try {
-      return super.increment();
+      return super.setNameClient(value);
+    } finally {
+      _$_ClientControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setAddressClient(String value) {
+    final _$actionInfo = _$_ClientControllerBaseActionController.startAction(
+        name: '_ClientControllerBase.setAddressClient');
+    try {
+      return super.setAddressClient(value);
+    } finally {
+      _$_ClientControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setPhoneClient(String value) {
+    final _$actionInfo = _$_ClientControllerBaseActionController.startAction(
+        name: '_ClientControllerBase.setPhoneClient');
+    try {
+      return super.setPhoneClient(value);
     } finally {
       _$_ClientControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -41,7 +143,15 @@ mixin _$ClientController on _ClientControllerBase, Store {
 
   @override
   String toString() {
-    final string = 'value: ${value.toString()}';
-    return '{$string}';
+    return '''
+nameClient: ${nameClient},
+addressClient: ${addressClient},
+phoneClient: ${phoneClient},
+loading: ${loading},
+isNameValid: ${isNameValid},
+isAddressValid: ${isAddressValid},
+isPhoneValid: ${isPhoneValid},
+savePressed: ${savePressed}
+    ''';
   }
 }

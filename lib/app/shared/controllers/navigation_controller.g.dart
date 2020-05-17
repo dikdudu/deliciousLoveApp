@@ -12,24 +12,23 @@ mixin _$NavigationController on _NavigationController, Store {
   Computed<int> _$outPageComputed;
 
   @override
-  int get outPage =>
-      (_$outPageComputed ??= Computed<int>(() => super.outPage)).value;
+  int get outPage => (_$outPageComputed ??= Computed<int>(() => super.outPage,
+          name: '_NavigationController.outPage'))
+      .value;
 
   final _$textAtom = Atom(name: '_NavigationController.text');
 
   @override
   String get text {
-    _$textAtom.context.enforceReadPolicy(_$textAtom);
-    _$textAtom.reportObserved();
+    _$textAtom.reportRead();
     return super.text;
   }
 
   @override
   set text(String value) {
-    _$textAtom.context.conditionallyRunInAction(() {
+    _$textAtom.reportWrite(value, super.text, () {
       super.text = value;
-      _$textAtom.reportChanged();
-    }, _$textAtom, name: '${_$textAtom.name}_set');
+    });
   }
 
   final _$_pageControllerAtom =
@@ -37,34 +36,30 @@ mixin _$NavigationController on _NavigationController, Store {
 
   @override
   int get _pageController {
-    _$_pageControllerAtom.context.enforceReadPolicy(_$_pageControllerAtom);
-    _$_pageControllerAtom.reportObserved();
+    _$_pageControllerAtom.reportRead();
     return super._pageController;
   }
 
   @override
   set _pageController(int value) {
-    _$_pageControllerAtom.context.conditionallyRunInAction(() {
+    _$_pageControllerAtom.reportWrite(value, super._pageController, () {
       super._pageController = value;
-      _$_pageControllerAtom.reportChanged();
-    }, _$_pageControllerAtom, name: '${_$_pageControllerAtom.name}_set');
+    });
   }
 
   final _$_pageAtom = Atom(name: '_NavigationController._page');
 
   @override
   int get _page {
-    _$_pageAtom.context.enforceReadPolicy(_$_pageAtom);
-    _$_pageAtom.reportObserved();
+    _$_pageAtom.reportRead();
     return super._page;
   }
 
   @override
   set _page(int value) {
-    _$_pageAtom.context.conditionallyRunInAction(() {
+    _$_pageAtom.reportWrite(value, super._page, () {
       super._page = value;
-      _$_pageAtom.reportChanged();
-    }, _$_pageAtom, name: '${_$_pageAtom.name}_set');
+    });
   }
 
   final _$_NavigationControllerActionController =
@@ -72,7 +67,8 @@ mixin _$NavigationController on _NavigationController, Store {
 
   @override
   void setPage(int page) {
-    final _$actionInfo = _$_NavigationControllerActionController.startAction();
+    final _$actionInfo = _$_NavigationControllerActionController.startAction(
+        name: '_NavigationController.setPage');
     try {
       return super.setPage(page);
     } finally {
@@ -82,7 +78,9 @@ mixin _$NavigationController on _NavigationController, Store {
 
   @override
   String toString() {
-    final string = 'text: ${text.toString()},outPage: ${outPage.toString()}';
-    return '{$string}';
+    return '''
+text: ${text},
+outPage: ${outPage}
+    ''';
   }
 }
