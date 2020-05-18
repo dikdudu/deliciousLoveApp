@@ -1,3 +1,4 @@
+import 'package:deliciousloveapp/app/modules/clients/pages/client/models/client_model.dart';
 import 'package:flutter/material.dart';
 
 class AddClientButton extends StatelessWidget {
@@ -7,7 +8,11 @@ class AddClientButton extends StatelessWidget {
       child: Icon(Icons.add),
       backgroundColor: Color.fromARGB(255, 246,134,189),
       onPressed: (){
-        Navigator.pushNamed(context, '/clients/client');
+        Navigator.pushNamed(context, '/clients/client', arguments: ClientModel(
+          name: "",
+          address: "",
+          phone: "",
+        ));
       },
     );
   }

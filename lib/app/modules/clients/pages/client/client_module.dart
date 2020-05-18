@@ -4,13 +4,18 @@ import 'package:deliciousloveapp/app/modules/clients/pages/client/client_page.da
 
 class ClientModule extends ChildModule {
   @override
-  List<Bind> get binds => [
+  List<Bind> get binds =>
+      [
         Bind((i) => ClientController()),
       ];
 
   @override
-  List<Router> get routers => [
-        Router(Modular.initialRoute, child: (_, args) => ClientPage()),
+  List<Router> get routers =>
+      [
+        Router("/:nomeClient", child: (_, args) =>
+            ClientPage(
+                clientModel: args.data,
+            )),
       ];
 
   static Inject get to => Inject<ClientModule>.of();

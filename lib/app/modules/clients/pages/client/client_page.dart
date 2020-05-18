@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'client_controller.dart';
+import 'models/client_model.dart';
 
 class ClientPage extends StatefulWidget {
   final String title;
+  final ClientModel clientModel;
 
-  const ClientPage({Key key, this.title = "Novo Client"}) : super(key: key);
+  const ClientPage({Key key, this.title = "Novo Client", this.clientModel}) : super(key: key);
 
   @override
   _ClientPageState createState() => _ClientPageState();
@@ -62,15 +64,18 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
                   padding: EdgeInsets.all(16),
                   children: <Widget>[
                     TextFormField(
+                      initialValue: widget.clientModel.name,
                       style: _fieldStyle,
                       decoration: _buildDecoration("Nome"),
                     ),
                     TextFormField(
+                      initialValue: widget.clientModel.address,
                       style: _fieldStyle,
                       maxLines: 2,
                       decoration: _buildDecoration("Endereço"),
                     ),
                     TextFormField(
+                      initialValue: widget.clientModel.phone,
                       style: _fieldStyle,
                       decoration: _buildDecoration("Telefone"),
                       keyboardType: TextInputType.numberWithOptions(decimal: true),
