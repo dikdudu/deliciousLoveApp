@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobx/mobx.dart';
 
 import 'repositories/client_repository_interface.dart';
@@ -10,9 +9,6 @@ class ClientController = _ClientControllerBase with _$ClientController;
 abstract class _ClientControllerBase with Store {
 
   IClientRepository repository;
-
-
-  DocumentReference reference;
 
   @observable
   String nameClient = "";

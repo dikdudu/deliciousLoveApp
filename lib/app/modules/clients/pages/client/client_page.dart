@@ -4,7 +4,8 @@ import 'client_controller.dart';
 
 class ClientPage extends StatefulWidget {
   final String title;
-  const ClientPage({Key key, this.title = "Client"}) : super(key: key);
+
+  const ClientPage({Key key, this.title = "Novo Client"}) : super(key: key);
 
   @override
   _ClientPageState createState() => _ClientPageState();
@@ -15,13 +16,70 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
 
   @override
   Widget build(BuildContext context) {
+
+    InputDecoration _buildDecoration(String label){
+      return InputDecoration(
+        labelText: label,
+        labelStyle: TextStyle(color: Colors.grey)
+      );
+    }
+
+    final _fieldStyle = TextStyle(
+      fontSize: 16
+    );
+
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 246, 134, 189),
       appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Color.fromARGB(255, 246, 134, 189),
         title: Text(widget.title),
+        centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.remove),
+            onPressed: (){},
+          ),
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: (){},
+          ),
+        ],
       ),
       body: Column(
         children: <Widget>[
-
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.only(top: 5),
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 255, 255, 255),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30.0),
+                    topRight: Radius.circular(30.0)),
+              ),
+              child: Form(
+                child: ListView(
+                  padding: EdgeInsets.all(16),
+                  children: <Widget>[
+                    TextFormField(
+                      style: _fieldStyle,
+                      decoration: _buildDecoration("Nome"),
+                    ),
+                    TextFormField(
+                      style: _fieldStyle,
+                      maxLines: 2,
+                      decoration: _buildDecoration("Endereço"),
+                    ),
+                    TextFormField(
+                      style: _fieldStyle,
+                      decoration: _buildDecoration("Telefone"),
+                      keyboardType: TextInputType.numberWithOptions(decimal: true),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
