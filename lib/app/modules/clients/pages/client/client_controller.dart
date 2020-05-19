@@ -8,7 +8,10 @@ class ClientController = _ClientControllerBase with _$ClientController;
 
 abstract class _ClientControllerBase with Store {
 
-  IClientRepository repository;
+  final IClientRepository repository;
+
+  _ClientControllerBase(IClientRepository this.repository);
+
 
   @observable
   String nameClient = "";
@@ -23,13 +26,19 @@ abstract class _ClientControllerBase with Store {
   bool loading = false;
 
   @action
-  void setNameClient(String value) => nameClient = value;
+  void setNameClient(String value){
+    nameClient = value;
+  }
 
   @action
-  void setAddressClient(String value) => addressClient = value;
+  void setAddressClient(String value) {
+    addressClient = value;
+  }
 
   @action
-  void setPhoneClient(String value) => phoneClient = value;
+  void setPhoneClient(String value) {
+    phoneClient = value;
+  }
 
   @computed
   bool get isNameValid => nameClient.isNotEmpty && nameClient.length > 3;

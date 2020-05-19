@@ -22,6 +22,8 @@ class AppModule extends MainModule {
     Bind((i) => NavigationController()),
     Bind((i) => ClientsController(i.get())),
     Bind<IClientsRepository>((i) => ClientsRepository(Firestore.instance)),
+
+
   ];
 
   @override

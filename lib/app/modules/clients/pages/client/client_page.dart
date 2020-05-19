@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'client_controller.dart';
 import 'models/client_model.dart';
@@ -18,7 +19,6 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
 
   @override
   Widget build(BuildContext context) {
-
     InputDecoration _buildDecoration(String label){
       return InputDecoration(
         labelText: label,
@@ -42,10 +42,15 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
             icon: Icon(Icons.remove),
             onPressed: (){},
           ),
-          IconButton(
-            icon: Icon(Icons.save),
-            onPressed: (){},
+          Observer(
+            builder: (_){
+              return IconButton(
+                icon: Icon(Icons.save),
+                onPressed: controller.savePressed,
+              );
+            },
           ),
+
         ],
       ),
       body: Column(
@@ -63,22 +68,39 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
                 child: ListView(
                   padding: EdgeInsets.all(16),
                   children: <Widget>[
-                    TextFormField(
-                      initialValue: widget.clientModel.name,
-                      style: _fieldStyle,
-                      decoration: _buildDecoration("Nome"),
+                    Observer(
+                      builder: (_){
+                        return TextFormField(
+                          initialValue: widget.clientModel.name,
+                          style: _fieldStyle,
+                          decoration: _buildDecoration("Nome"),
+                          onChanged: controller.setNameClient,
+                        );
+                      },
                     ),
-                    TextFormField(
-                      initialValue: widget.clientModel.address,
-                      style: _fieldStyle,
-                      maxLines: 2,
-                      decoration: _buildDecoration("Endereço"),
+
+                    Observer(
+                      builder: (_){
+                        return  TextFormField(
+                          initialValue: widget.clientModel.address,
+                          style: _fieldStyle,
+                          maxLines: 2,
+                          decoration: _buildDecoration("Endereço"),
+                          onChanged: controller.setAddressClient,
+                        );
+                      },
                     ),
-                    TextFormField(
-                      initialValue: widget.clientModel.phone,
-                      style: _fieldStyle,
-                      decoration: _buildDecoration("Telefone"),
-                      keyboardType: TextInputType.numberWithOptions(decimal: true),
+
+                    Observer(
+                      builder: (_){
+                        return TextFormField(
+                          initialValue: widget.clientModel.phone,
+                          style: _fieldStyle,
+                          decoration: _buildDecoration("Telefone"),
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
+                          onChanged: controller.setPhoneClient,
+                        );
+                      },
                     ),
                   ],
                 ),
