@@ -8,10 +8,9 @@ class ClientRepository implements IClientRepository{
 
   ClientRepository(this.firestore);
 
-  DocumentReference reference;
 
   @override
-  saveClient({String name, String address, String phone}) async{
+  saveClient({String name, String address, String phone, DocumentReference reference}) async{
     if(reference == null){
       reference = await Firestore.instance.collection('clients').add({
         'nome': name,

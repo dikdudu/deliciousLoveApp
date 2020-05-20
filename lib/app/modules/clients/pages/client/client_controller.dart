@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobx/mobx.dart';
 
 import 'repositories/client_repository_interface.dart';
@@ -25,6 +26,9 @@ abstract class _ClientControllerBase with Store {
   @observable
   bool loading = false;
 
+  @observable
+  DocumentReference _reference;
+
   @action
   void setNameClient(String value){
     nameClient = value;
@@ -38,6 +42,10 @@ abstract class _ClientControllerBase with Store {
   @action
   void setPhoneClient(String value) {
     phoneClient = value;
+  }
+
+  @action setReference(DocumentReference reference){
+    _reference = reference;
   }
 
   @computed
@@ -61,6 +69,7 @@ abstract class _ClientControllerBase with Store {
       name: nameClient,
       phone: phoneClient,
       address: addressClient,
+      reference: _reference,
     );
 
     loading = false;

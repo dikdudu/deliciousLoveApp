@@ -30,6 +30,8 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
       fontSize: 16
     );
 
+    controller.setReference(widget.clientModel.reference);
+
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 246, 134, 189),
       appBar: AppBar(
@@ -74,6 +76,7 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
                           initialValue: widget.clientModel.name,
                           style: _fieldStyle,
                           decoration: _buildDecoration("Nome"),
+                          enabled: !controller.loading,
                           onChanged: controller.setNameClient,
                         );
                       },
@@ -86,6 +89,7 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
                           style: _fieldStyle,
                           maxLines: 2,
                           decoration: _buildDecoration("Endereço"),
+                          enabled: !controller.loading,
                           onChanged: controller.setAddressClient,
                         );
                       },
@@ -98,6 +102,7 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
                           style: _fieldStyle,
                           decoration: _buildDecoration("Telefone"),
                           keyboardType: TextInputType.numberWithOptions(decimal: true),
+                          enabled: !controller.loading,
                           onChanged: controller.setPhoneClient,
                         );
                       },

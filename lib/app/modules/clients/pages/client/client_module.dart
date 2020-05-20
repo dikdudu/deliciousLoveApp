@@ -17,7 +17,7 @@ class ClientModule extends ChildModule {
   @override
   List<Router> get routers =>
       [
-        Router("/:nomeClient", child: (_, args) =>
+        Router(Modular.initialRoute, child: (_, args) =>
             ClientPage(
                 clientModel: args.data,
             )),
