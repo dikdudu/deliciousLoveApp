@@ -62,7 +62,7 @@ abstract class _ClientControllerBase with Store {
       (isNameValid && isAddressValid && isPhoneValid && !loading) ? addClient : null;
 
   @action
-  Future<void> addClient() async {
+  Future<bool> addClient() async {
     loading = true;
 
     await repository.saveClient(
@@ -73,6 +73,8 @@ abstract class _ClientControllerBase with Store {
     );
 
     loading = false;
+
+    return true;
 
   }
 

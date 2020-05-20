@@ -8,7 +8,8 @@ class ClientPage extends StatefulWidget {
   final String title;
   final ClientModel clientModel;
 
-  const ClientPage({Key key, this.title = "Novo Client", this.clientModel}) : super(key: key);
+  const ClientPage({Key key, this.title = "Novo Client", this.clientModel})
+      : super(key: key);
 
   @override
   _ClientPageState createState() => _ClientPageState();
@@ -17,22 +18,24 @@ class ClientPage extends StatefulWidget {
 class _ClientPageState extends ModularState<ClientPage, ClientController> {
   //use 'controller' variable to access controller
 
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
-    InputDecoration _buildDecoration(String label){
+    InputDecoration _buildDecoration(String label) {
       return InputDecoration(
-        labelText: label,
-        labelStyle: TextStyle(color: Colors.grey)
-      );
+          labelText: label, labelStyle: TextStyle(color: Colors.grey));
     }
 
-    final _fieldStyle = TextStyle(
-      fontSize: 16
-    );
+    final _fieldStyle = TextStyle(fontSize: 16);
 
+    controller.setNameClient(widget.clientModel.name);
+    controller.setAddressClient(widget.clientModel.address);
+    controller.setPhoneClient(widget.clientModel.phone);
     controller.setReference(widget.clientModel.reference);
 
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Color.fromARGB(255, 246, 134, 189),
       appBar: AppBar(
         elevation: 0.0,
@@ -42,17 +45,16 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.remove),
-            onPressed: (){},
+            onPressed: () {},
           ),
           Observer(
-            builder: (_){
+            builder: (_) {
               return IconButton(
                 icon: Icon(Icons.save),
-                onPressed: controller.savePressed,
+                onPressed: saveClient,
               );
             },
           ),
-
         ],
       ),
       body: Column(
@@ -71,7 +73,7 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
                   padding: EdgeInsets.all(16),
                   children: <Widget>[
                     Observer(
-                      builder: (_){
+                      builder: (_) {
                         return TextFormField(
                           initialValue: widget.clientModel.name,
                           style: _fieldStyle,
@@ -81,10 +83,9 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
                         );
                       },
                     ),
-
                     Observer(
-                      builder: (_){
-                        return  TextFormField(
+                      builder: (_) {
+                        return TextFormField(
                           initialValue: widget.clientModel.address,
                           style: _fieldStyle,
                           maxLines: 2,
@@ -94,14 +95,14 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
                         );
                       },
                     ),
-
                     Observer(
-                      builder: (_){
+                      builder: (_) {
                         return TextFormField(
                           initialValue: widget.clientModel.phone,
                           style: _fieldStyle,
                           decoration: _buildDecoration("Telefone"),
-                          keyboardType: TextInputType.numberWithOptions(decimal: true),
+                          keyboardType:
+                              TextInputType.numberWithOptions(decimal: true),
                           enabled: !controller.loading,
                           onChanged: controller.setPhoneClient,
                         );
@@ -113,6 +114,31 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  void saveClient()async{
+
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(
+        content:
+            Text("Salvando Cliente...", style: TextStyle(color: Colors.white)),
+        duration: Duration(minutes: 1),
+        backgroundColor: Colors.pinkAccent,
+      ),
+    );
+
+    bool success = await controller.savePressed();
+
+    _scaffoldKey.currentState.removeCurrentSnackBar();
+
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(
+        content:
+        Text(success ? "Cliente Salvo" : "Erro ao Salvar o Cliente", style: TextStyle(color: Colors.white)),
+        duration: Duration(minutes: 1),
+        backgroundColor: Colors.pinkAccent,
       ),
     );
   }

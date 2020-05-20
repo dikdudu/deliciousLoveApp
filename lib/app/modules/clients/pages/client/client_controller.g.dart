@@ -98,10 +98,25 @@ mixin _$ClientController on _ClientControllerBase, Store {
     });
   }
 
+  final _$_referenceAtom = Atom(name: '_ClientControllerBase._reference');
+
+  @override
+  DocumentReference get _reference {
+    _$_referenceAtom.reportRead();
+    return super._reference;
+  }
+
+  @override
+  set _reference(DocumentReference value) {
+    _$_referenceAtom.reportWrite(value, super._reference, () {
+      super._reference = value;
+    });
+  }
+
   final _$addClientAsyncAction = AsyncAction('_ClientControllerBase.addClient');
 
   @override
-  Future<void> addClient() {
+  Future<bool> addClient() {
     return _$addClientAsyncAction.run(() => super.addClient());
   }
 
@@ -136,6 +151,17 @@ mixin _$ClientController on _ClientControllerBase, Store {
         name: '_ClientControllerBase.setPhoneClient');
     try {
       return super.setPhoneClient(value);
+    } finally {
+      _$_ClientControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setReference(DocumentReference reference) {
+    final _$actionInfo = _$_ClientControllerBaseActionController.startAction(
+        name: '_ClientControllerBase.setReference');
+    try {
+      return super.setReference(reference);
     } finally {
       _$_ClientControllerBaseActionController.endAction(_$actionInfo);
     }
