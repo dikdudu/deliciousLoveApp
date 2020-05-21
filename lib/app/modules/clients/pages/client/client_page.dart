@@ -18,16 +18,23 @@ class ClientPage extends StatefulWidget {
 class _ClientPageState extends ModularState<ClientPage, ClientController> {
   //use 'controller' variable to access controller
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    InputDecoration _buildDecoration(String label) {
-      return InputDecoration(
-          labelText: label, labelStyle: TextStyle(color: Colors.grey));
+    _textFormField(
+        {String initialValue, String label, onChanged, String errorText()}) {
+      return TextFormField(
+        initialValue: initialValue,
+        style: TextStyle(fontSize: 16),
+        decoration: InputDecoration(
+          labelText: label,
+          labelStyle: TextStyle(color: Colors.grey),
+          errorText: errorText == null ? null : errorText(),
+        ),
+        enabled: !controller.loading,
+        onChanged: onChanged,
+      );
     }
-
-    final _fieldStyle = TextStyle(fontSize: 16);
 
     controller.setNameClient(widget.clientModel.name);
     controller.setAddressClient(widget.clientModel.address);
@@ -35,7 +42,6 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
     controller.setReference(widget.clientModel.reference);
 
     return Scaffold(
-      key: _scaffoldKey,
       backgroundColor: Color.fromARGB(255, 246, 134, 189),
       appBar: AppBar(
         elevation: 0.0,
@@ -51,7 +57,7 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
             builder: (_) {
               return IconButton(
                 icon: Icon(Icons.save),
-                onPressed: saveClient,
+                onPressed: controller.savePressed,
               );
             },
           ),
@@ -74,37 +80,31 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
                   children: <Widget>[
                     Observer(
                       builder: (_) {
-                        return TextFormField(
+                        return _textFormField(
                           initialValue: widget.clientModel.name,
-                          style: _fieldStyle,
-                          decoration: _buildDecoration("Nome"),
-                          enabled: !controller.loading,
+                          label: "Nome",
                           onChanged: controller.setNameClient,
+                          errorText: controller.validateName,
                         );
                       },
                     ),
                     Observer(
                       builder: (_) {
-                        return TextFormField(
+                        return _textFormField(
                           initialValue: widget.clientModel.address,
-                          style: _fieldStyle,
-                          maxLines: 2,
-                          decoration: _buildDecoration("Endereço"),
-                          enabled: !controller.loading,
+                          label: "Endereco",
                           onChanged: controller.setAddressClient,
+                          errorText: controller.validateAddress,
                         );
                       },
                     ),
                     Observer(
                       builder: (_) {
-                        return TextFormField(
+                        return _textFormField(
                           initialValue: widget.clientModel.phone,
-                          style: _fieldStyle,
-                          decoration: _buildDecoration("Telefone"),
-                          keyboardType:
-                              TextInputType.numberWithOptions(decimal: true),
-                          enabled: !controller.loading,
+                          label: "Telefone",
                           onChanged: controller.setPhoneClient,
+                          errorText: controller.validatePhone,
                         );
                       },
                     ),
@@ -118,28 +118,28 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
     );
   }
 
-  void saveClient()async{
+//  void saveClient() async {
+//    _scaffoldKey.currentState.showSnackBar(
+//      SnackBar(
+//        content:
+//            Text("Salvando Cliente...", style: TextStyle(color: Colors.white)),
+//        backgroundColor: Colors.pinkAccent,
+//      ),
+//    );
+//
+//    bool success = await controller.savePressed();
+//
+//    _scaffoldKey.currentState.removeCurrentSnackBar();
+//
+//    _scaffoldKey.currentState.showSnackBar(
+//      SnackBar(
+//        content: Text(success ? "Cliente Salvo" : "Erro ao Salvar o Cliente",
+//            style: TextStyle(color: Colors.white)),
+//        backgroundColor: success ? Colors.pinkAccent : Colors.redAccent,
+//      ),
+//    );
+//  }
 
-    _scaffoldKey.currentState.showSnackBar(
-      SnackBar(
-        content:
-            Text("Salvando Cliente...", style: TextStyle(color: Colors.white)),
-        duration: Duration(minutes: 1),
-        backgroundColor: Colors.pinkAccent,
-      ),
-    );
 
-    bool success = await controller.savePressed();
 
-    _scaffoldKey.currentState.removeCurrentSnackBar();
-
-    _scaffoldKey.currentState.showSnackBar(
-      SnackBar(
-        content:
-        Text(success ? "Cliente Salvo" : "Erro ao Salvar o Cliente", style: TextStyle(color: Colors.white)),
-        duration: Duration(minutes: 1),
-        backgroundColor: Colors.pinkAccent,
-      ),
-    );
-  }
 }

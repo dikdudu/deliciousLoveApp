@@ -44,12 +44,40 @@ abstract class _ClientControllerBase with Store {
     phoneClient = value;
   }
 
-  @action setReference(DocumentReference reference){
+  @action
+  void setReference(DocumentReference reference){
     _reference = reference;
+  }
+
+  String validateName(){
+    if(nameClient == null || nameClient.isEmpty){
+      return "Preencha o Nome do Cliente";
+    }
+    return null;
+  }
+
+  String validateAddress(){
+    if(addressClient == null || addressClient.isEmpty){
+      return "Preencha o campo de Endereço";
+    }
+    return null;
+  }
+
+  String validatePhone() {
+    String pattern = r'(^(?:[+0]9)?[0-9]{9,12}$)';
+    RegExp regExp = new RegExp(pattern);
+    if (phoneClient.length == 0) {
+      return 'Cliente nao pode ser cadastro sem telefone';
+    }
+    else if (!regExp.hasMatch(phoneClient)) {
+      return 'Por favor insira um telefone valido';
+    }
+    return null;
   }
 
   @computed
   bool get isNameValid => nameClient.isNotEmpty && nameClient.length > 3;
+
 
   @computed
   bool get isAddressValid => addressClient.isNotEmpty && addressClient.length > 4;
@@ -58,8 +86,14 @@ abstract class _ClientControllerBase with Store {
   bool get isPhoneValid => phoneClient.isNotEmpty && phoneClient.length >= 9;
 
   @computed
-  Function get savePressed =>
-      (isNameValid && isAddressValid && isPhoneValid && !loading) ? addClient : null;
+  Function get savePressed{
+    if(isNameValid && isAddressValid && isPhoneValid && !loading) {
+      return addClient;
+    }else{
+      return null;
+    }
+  }
+
 
   @action
   Future<bool> addClient() async {

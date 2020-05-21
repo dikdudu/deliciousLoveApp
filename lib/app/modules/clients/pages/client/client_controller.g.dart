@@ -157,7 +157,7 @@ mixin _$ClientController on _ClientControllerBase, Store {
   }
 
   @override
-  dynamic setReference(DocumentReference reference) {
+  void setReference(DocumentReference reference) {
     final _$actionInfo = _$_ClientControllerBaseActionController.startAction(
         name: '_ClientControllerBase.setReference');
     try {
