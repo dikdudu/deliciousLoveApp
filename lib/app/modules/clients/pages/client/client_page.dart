@@ -17,7 +17,7 @@ class ClientPage extends StatefulWidget {
 
 class _ClientPageState extends ModularState<ClientPage, ClientController> {
   //use 'controller' variable to access controller
-
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +42,7 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
     controller.setReference(widget.clientModel.reference);
 
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Color.fromARGB(255, 246, 134, 189),
       appBar: AppBar(
         elevation: 0.0,
@@ -57,7 +58,7 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
             builder: (_) {
               return IconButton(
                 icon: Icon(Icons.save),
-                onPressed: controller.savePressed,
+                onPressed: controller.isSaved ? saveClient : null,
               );
             },
           ),
@@ -118,27 +119,27 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
     );
   }
 
-//  void saveClient() async {
-//    _scaffoldKey.currentState.showSnackBar(
-//      SnackBar(
-//        content:
-//            Text("Salvando Cliente...", style: TextStyle(color: Colors.white)),
-//        backgroundColor: Colors.pinkAccent,
-//      ),
-//    );
-//
-//    bool success = await controller.savePressed();
-//
-//    _scaffoldKey.currentState.removeCurrentSnackBar();
-//
-//    _scaffoldKey.currentState.showSnackBar(
-//      SnackBar(
-//        content: Text(success ? "Cliente Salvo" : "Erro ao Salvar o Cliente",
-//            style: TextStyle(color: Colors.white)),
-//        backgroundColor: success ? Colors.pinkAccent : Colors.redAccent,
-//      ),
-//    );
-//  }
+  void saveClient() async {
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(
+        content:
+            Text("Salvando Cliente...", style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.pinkAccent,
+      ),
+    );
+
+    bool success = await controller.savePressed();
+
+    _scaffoldKey.currentState.removeCurrentSnackBar();
+
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(
+        content: Text(success ? "Cliente Salvo" : "Erro ao Salvar o Cliente",
+            style: TextStyle(color: Colors.white)),
+        backgroundColor: success ? Colors.greenAccent : Colors.redAccent,
+      ),
+    );
+  }
 
 
 

@@ -76,23 +76,10 @@ abstract class _ClientControllerBase with Store {
   }
 
   @computed
-  bool get isNameValid => nameClient.isNotEmpty && nameClient.length > 3;
-
-
-  @computed
-  bool get isAddressValid => addressClient.isNotEmpty && addressClient.length > 4;
+  bool get isSaved => validateName() == null && validateAddress() == null && validatePhone() == null;
 
   @computed
-  bool get isPhoneValid => phoneClient.isNotEmpty && phoneClient.length >= 9;
-
-  @computed
-  Function get savePressed{
-    if(isNameValid && isAddressValid && isPhoneValid && !loading) {
-      return addClient;
-    }else{
-      return null;
-    }
-  }
+  Function get savePressed => addClient;
 
 
   @action

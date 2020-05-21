@@ -9,27 +9,12 @@ part of 'client_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ClientController on _ClientControllerBase, Store {
-  Computed<bool> _$isNameValidComputed;
+  Computed<bool> _$isSavedComputed;
 
   @override
-  bool get isNameValid =>
-      (_$isNameValidComputed ??= Computed<bool>(() => super.isNameValid,
-              name: '_ClientControllerBase.isNameValid'))
-          .value;
-  Computed<bool> _$isAddressValidComputed;
-
-  @override
-  bool get isAddressValid =>
-      (_$isAddressValidComputed ??= Computed<bool>(() => super.isAddressValid,
-              name: '_ClientControllerBase.isAddressValid'))
-          .value;
-  Computed<bool> _$isPhoneValidComputed;
-
-  @override
-  bool get isPhoneValid =>
-      (_$isPhoneValidComputed ??= Computed<bool>(() => super.isPhoneValid,
-              name: '_ClientControllerBase.isPhoneValid'))
-          .value;
+  bool get isSaved => (_$isSavedComputed ??= Computed<bool>(() => super.isSaved,
+          name: '_ClientControllerBase.isSaved'))
+      .value;
   Computed<Function> _$savePressedComputed;
 
   @override
@@ -174,9 +159,7 @@ nameClient: ${nameClient},
 addressClient: ${addressClient},
 phoneClient: ${phoneClient},
 loading: ${loading},
-isNameValid: ${isNameValid},
-isAddressValid: ${isAddressValid},
-isPhoneValid: ${isPhoneValid},
+isSaved: ${isSaved},
 savePressed: ${savePressed}
     ''';
   }
