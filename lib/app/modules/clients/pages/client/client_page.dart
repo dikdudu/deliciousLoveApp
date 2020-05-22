@@ -51,8 +51,8 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
         centerTitle: true,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.remove),
-            onPressed: deletedClient,
+            icon: Icon(Icons.remove_circle_outline),
+            onPressed:widget.clientModel.reference == null ? null : deletedClient,
           ),
           Observer(
             builder: (_) {

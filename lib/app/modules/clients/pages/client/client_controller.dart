@@ -65,7 +65,7 @@ abstract class _ClientControllerBase with Store {
     String pattern = r'(^(?:[+0]9)?[0-9]{9,12}$)';
     RegExp regExp = new RegExp(pattern);
     if (phoneClient.length == 0) {
-      return 'Cliente nao pode ser cadastro sem telefone';
+      return 'Preencha o campo de Telefone';
     } else if (!regExp.hasMatch(phoneClient)) {
       return 'Por favor insira um telefone valido';
     }
