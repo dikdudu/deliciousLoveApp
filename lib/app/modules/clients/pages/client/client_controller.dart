@@ -50,6 +50,8 @@ abstract class _ClientControllerBase with Store {
   String validateName() {
     if (nameClient == null || nameClient.isEmpty) {
       return "Preencha o Nome do Cliente";
+    }if(nameClient.length < 3){
+      return "Nome precisa ter pelo menos 3 letras";
     }
     return null;
   }
@@ -57,6 +59,8 @@ abstract class _ClientControllerBase with Store {
   String validateAddress() {
     if (addressClient == null || addressClient.isEmpty) {
       return "Preencha o campo de Endereço";
+    }if(addressClient.length < 4){
+      return "Endereço precisa ter pelo menos 4 caracteres";
     }
     return null;
   }
@@ -67,7 +71,7 @@ abstract class _ClientControllerBase with Store {
     if (phoneClient.length == 0) {
       return 'Preencha o campo de Telefone';
     } else if (!regExp.hasMatch(phoneClient)) {
-      return 'Por favor insira um telefone valido';
+      return 'Por favor insira um telefone valido (com pelo menos 9 digitos)';
     }
     return null;
   }
