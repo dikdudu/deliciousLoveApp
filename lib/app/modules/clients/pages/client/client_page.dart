@@ -16,7 +16,7 @@ class ClientPage extends StatefulWidget {
 }
 
 class _ClientPageState extends ModularState<ClientPage, ClientController> {
-  //use 'controller' variable to access controller
+
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -52,7 +52,7 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.remove),
-            onPressed: () {},
+            onPressed: deletedClient,
           ),
           Observer(
             builder: (_) {
@@ -139,6 +139,43 @@ class _ClientPageState extends ModularState<ClientPage, ClientController> {
         backgroundColor: success ? Colors.greenAccent : Colors.redAccent,
       ),
     );
+
+  }
+
+  void deletedClient() async {
+
+    if(widget.clientModel.reference == null) {
+      _scaffoldKey.currentState.showSnackBar(
+        SnackBar(
+          content:
+          Text("Cliente não pode ser deletado", style: TextStyle(color: Colors.white)),
+          backgroundColor: Colors.pinkAccent,
+        ),
+      );
+
+      return null;
+    }
+
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(
+        content:
+        Text("Deletando Cliente...", style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.pinkAccent,
+      ),
+    );
+
+    bool success = await controller.delete();
+
+    _scaffoldKey.currentState.removeCurrentSnackBar();
+
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(
+        content: Text(success ? "Cliente deletado" : "Erro ao Deletar o Cliente",
+            style: TextStyle(color: Colors.white)),
+        backgroundColor: success ? Colors.greenAccent : Colors.redAccent,
+      ),
+    );
+
   }
 
 

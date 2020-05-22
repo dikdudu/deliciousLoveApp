@@ -26,5 +26,12 @@ class ClientRepository implements IClientRepository{
     }
   }
 
+  @override
+  deleteClient(DocumentReference reference) async{
+    await reference.delete();
+  }
+
+
+
 
 }
