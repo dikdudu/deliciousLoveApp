@@ -21,7 +21,7 @@ class _ClientsPageState extends State<ClientsPage> {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Color.fromARGB(255, 246, 134, 189),
-        title: Text("Clientes"),
+        title: Text("Clientes Novos"),
         centerTitle: true,
       ),
       floatingActionButton: AddClientButton(),
